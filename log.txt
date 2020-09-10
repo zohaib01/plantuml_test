@@ -1,0 +1,9 @@
+
+Command 'lsss' not found, did you mean:
+
+  command 'lssu' from deb nilfs-tools
+  command 'less' from deb less
+  command 'lsns' from deb util-linux
+
+Try: sudo apt install <deb name>
+
