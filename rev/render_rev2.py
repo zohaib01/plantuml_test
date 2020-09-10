@@ -40,11 +40,11 @@ def render_uml():
 
             input_file.close()
 
-        stdout, stderr = subprocess.Popen(['pandoc', input_md, '-o', 'test_out.md', '--filter', 'pandoc-plantuml'],
-                                          stderr=subprocess.PIPE, stdout=subprocess.PIPE).communicate()
+        err, out = subprocess.Popen(['pandoc', input_md, '-o', 'test_out.md', '--filter', 'pandoc-plantuml'],
+                                    stderr=subprocess.PIPE, stdout=subprocess.PIPE).communicate()
 
-        print(stdout.decode("utf-8"))
-        if stderr:
+        print(out.decode("utf-8"))
+        if out:
 
             try:
                 with open(str(output_md), 'w') as out_file:
@@ -67,10 +67,9 @@ def render_uml():
                 print("No {} file found".format(output_md))
                 sys.exit(1)
 
-        #elif pandoc_cmd.stderr:
         else:
-            print('failed to run pandoc. Following error occured')
-            print(stderr.decode('utf-8'))
+            print('failed to run pandoc. Following error occurred')
+            print(err.decode('utf-8'))
             sys.exit(1)
 
     except IOError:
